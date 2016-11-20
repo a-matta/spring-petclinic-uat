@@ -1,9 +1,7 @@
 *** Settings ***
-Documentation                               View information pertaining to pet owner
 Library                                     Selenium2Library
-Test Setup                                  Open Browser                                            ${URL_TO_PETCLINIC}                  Chrome
+Test Setup                                  Go to application home page
 Test Teardown                               Close All Browsers
-
 *** Variable ***
 ${FIND_OWNER_NAVIGATION_BAR_LINK}           xpath=//*[@id="main-navbar"]/ul/li[3]/a/span[1]
 ${FIND_OWNER_BUTTON}                        xpath=//*[@id="search-owner-form"]/div[2]/div/button
@@ -21,7 +19,6 @@ ${OWNER_NAME_LABEL}                         xpath=/html/body/div/div/table[1]/tb
 ${OWNER_ADDRESS_LABEL}                      xpath=/html/body/div/div/table[1]/tbody/tr[2]/td
 ${OWNER_CITY_LABEL}                         xpath=/html/body/div/div/table[1]/tbody/tr[3]/td
 ${OWNER_TELEPHONE_LABEL}                    xpath=/html/body/div/div/table[1]/tbody/tr[4]/td
-
 *** Test Cases ***
 Pet Owner's Name Can Be Updated
                                             Click Element                                           ${FIND_OWNER_NAVIGATION_BAR_LINK}
@@ -45,7 +42,6 @@ New Pet Owner Can be Added to the System
                                             Element Text Should Be                                  ${OWNER_ADDRESS_LABEL}               122 Y 97th Street New York 103242
                                             Element Text Should Be                                  ${OWNER_CITY_LABEL }                 New Jersey
                                             Element Text Should Be                                  ${OWNER_TELEPHONE_LABEL}             6786786
-
-
-
-
+*** Keyword ***
+Go to application home page
+                                            Open Browser                                            ${URL_TO_PETCLINIC}                  Chrome
