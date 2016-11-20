@@ -1,6 +1,9 @@
 *** Settings ***
 Documentation                               View information pertaining to pet owner
 Library                                     Selenium2Library
+Test Setup                                  Open Browser                                            ${URL_TO_PETCLINIC}                  Chrome
+Test Teardown                               Close All Browsers
+
 *** Variable ***
 ${FIND_OWNER_NAVIGATION_BAR_LINK}           xpath=//*[@id="main-navbar"]/ul/li[3]/a/span[1]
 ${FIND_OWNER_BUTTON}                        xpath=//*[@id="search-owner-form"]/div[2]/div/button
@@ -16,24 +19,20 @@ ${UPDATE_OWNER_BUTTON}                      xpath=//*[@id="add-owner-form"]/div[
 ${ADD_OWNER_BUTTON}                         xpath=/html/body/div/div/a
 *** Test Cases ***
 View information pertaining to pet owner
-                                            Open Browser                                             ${URL_TO_PETCLINIC}                  Chrome
-                                            Click Element                                            ${FIND_OWNER_NAVIGATION_BAR_LINK}
-                                            Click Button                                             ${FIND_OWNER_BUTTON}
-                                            Click Link                                               ${FIRST_LINK_FROM_OWNER'S_LIST}
-                                            Click Element                                            ${EDIT_OWNER_BUTTON}
-                                            ${old_firstname}=                                        Get Value                            ${INPUT_ELEMENT_FIRST_NAME}
-                                            ${new_firstname}=                                        Catenate                             ${old_firstname}                    Elsa
-                                            Input Text                                               ${INPUT_ELEMENT_FIRST_NAME}          ${new_firstname}
-                                            Click Button                                             ${UPDATE_OWNER_BUTTON}
-                                            Close Browser
+                                            Click Element                                           ${FIND_OWNER_NAVIGATION_BAR_LINK}
+                                            Click Button                                            ${FIND_OWNER_BUTTON}
+                                            Click Link                                              ${FIRST_LINK_FROM_OWNER'S_LIST}
+                                            Click Element                                           ${EDIT_OWNER_BUTTON}
+                                            ${old_firstname}=                                       Get Value                            ${INPUT_ELEMENT_FIRST_NAME}
+                                            ${new_firstname}=                                       Catenate                             ${old_firstname}                    Elisa
+                                            Input Text                                              ${INPUT_ELEMENT_FIRST_NAME}          ${new_firstname}
+                                            Click Button                                            ${UPDATE_OWNER_BUTTON}
 Add new pet owner to the system
-                                            Open Browser                                             ${URL_TO_PETCLINIC}                  Chrome
-                                            Click Element                                            ${FIND_OWNER_NAVIGATION_BAR_LINK}
-                                            Click Element                                            ${ADD_OWNER_BUTTON}
-                                            Input Text                                               ${INPUT_ELEMENT_FIRST_NAME}          Adriel
-                                            Input Text                                               ${INPUT_ELEMENT_LAST_NAME}           Jones
-                                            Input Text                                               ${INPUT_ELEMENT_ADDRESS}             120 E 87th Street New York 10128
-                                            Input Text                                               ${INPUT_ELEMENT_CITY}                New York
-                                            Input Text                                               ${INPUT_ELEMENT_TELEPHONE}           0534234434
-                                            Click Element                                            ${UPDATE_OWNER_BUTTON}
-                                            Close Browser
+                                            Click Element                                           ${FIND_OWNER_NAVIGATION_BAR_LINK}
+                                            Click Element                                           ${ADD_OWNER_BUTTON}
+                                            Input Text                                              ${INPUT_ELEMENT_FIRST_NAME}          Adriel
+                                            Input Text                                              ${INPUT_ELEMENT_LAST_NAME}           Jones
+                                            Input Text                                              ${INPUT_ELEMENT_ADDRESS}             120 E 87th Street New York 10128
+                                            Input Text                                              ${INPUT_ELEMENT_CITY}                New York
+                                            Input Text                                              ${INPUT_ELEMENT_TELEPHONE}           0534234434
+                                            Click Element                                           ${UPDATE_OWNER_BUTTON}
