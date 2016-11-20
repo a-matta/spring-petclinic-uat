@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation                               View information pertaining to pet owner
 Library                                     Selenium2Library
-Test Setup                                  Open Browser                                            ${URL_TO_PETCLINIC}                  Chrome
+Test Setup                                  Open Browser                                            ${URL_TO_PETCLINIC}                                   Chrome
 Test Teardown                               Close All Browsers
 
 *** Variable ***
@@ -17,22 +17,23 @@ ${INPUT_ELEMENT_CITY}                       xpath=//*[@id="city"]
 ${INPUT_ELEMENT_TELEPHONE}                  xpath=//*[@id="telephone"]
 ${UPDATE_OWNER_BUTTON}                      xpath=//*[@id="add-owner-form"]/div[2]/div/button
 ${ADD_OWNER_BUTTON}                         xpath=/html/body/div/div/a
+${OWNER_NAME_LABEL}  xpath=/html/body/div/div/table[1]/tbody/tr[1]/td/b
 *** Test Cases ***
-View information pertaining to pet owner
+Pet Owner's Name Can Be Updated
                                             Click Element                                           ${FIND_OWNER_NAVIGATION_BAR_LINK}
                                             Click Button                                            ${FIND_OWNER_BUTTON}
                                             Click Link                                              ${FIRST_LINK_FROM_OWNER'S_LIST}
                                             Click Element                                           ${EDIT_OWNER_BUTTON}
-                                            ${old_firstname}=                                       Get Value                            ${INPUT_ELEMENT_FIRST_NAME}
-                                            ${new_firstname}=                                       Catenate                             ${old_firstname}                    Elisa
-                                            Input Text                                              ${INPUT_ELEMENT_FIRST_NAME}          ${new_firstname}
+                                            Input Text                                              ${INPUT_ELEMENT_FIRST_NAME}                           FIRST
+                                            Input Text                                              ${INPUT_ELEMENT_LAST_NAME}                            LAST
                                             Click Button                                            ${UPDATE_OWNER_BUTTON}
-Add new pet owner to the system
+                                            Element Text Should Be                                  ${OWNER_NAME_LABEL}                            FIRST LAST
+New Pet Owner Can be Added to the System
                                             Click Element                                           ${FIND_OWNER_NAVIGATION_BAR_LINK}
                                             Click Element                                           ${ADD_OWNER_BUTTON}
-                                            Input Text                                              ${INPUT_ELEMENT_FIRST_NAME}          Adriel
-                                            Input Text                                              ${INPUT_ELEMENT_LAST_NAME}           Jones
-                                            Input Text                                              ${INPUT_ELEMENT_ADDRESS}             120 E 87th Street New York 10128
-                                            Input Text                                              ${INPUT_ELEMENT_CITY}                New York
-                                            Input Text                                              ${INPUT_ELEMENT_TELEPHONE}           0534234434
+                                            Input Text                                              ${INPUT_ELEMENT_FIRST_NAME}                           Adriel
+                                            Input Text                                              ${INPUT_ELEMENT_LAST_NAME}                            Jones
+                                            Input Text                                              ${INPUT_ELEMENT_ADDRESS}                              120 E 87th Street New York 10128
+                                            Input Text                                              ${INPUT_ELEMENT_CITY}                                 New York
+                                            Input Text                                              ${INPUT_ELEMENT_TELEPHONE}                            0534234434
                                             Click Element                                           ${UPDATE_OWNER_BUTTON}
