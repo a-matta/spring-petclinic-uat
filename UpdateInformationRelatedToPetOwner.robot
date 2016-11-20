@@ -18,6 +18,10 @@ ${INPUT_ELEMENT_TELEPHONE}                  xpath=//*[@id="telephone"]
 ${UPDATE_OWNER_BUTTON}                      xpath=//*[@id="add-owner-form"]/div[2]/div/button
 ${ADD_OWNER_BUTTON}                         xpath=/html/body/div/div/a
 ${OWNER_NAME_LABEL}                         xpath=/html/body/div/div/table[1]/tbody/tr[1]/td/b
+${OWNER_ADDRESS_LABEL}                      xpath=/html/body/div/div/table[1]/tbody/tr[2]/td
+${OWNER_CITY_LABEL}                         xpath=/html/body/div/div/table[1]/tbody/tr[3]/td
+${OWNER_TELEPHONE_LABEL}                    xpath=/html/body/div/div/table[1]/tbody/tr[4]/td
+
 *** Test Cases ***
 Pet Owner's Name Can Be Updated
                                             Click Element                                           ${FIND_OWNER_NAVIGATION_BAR_LINK}
@@ -31,15 +35,16 @@ Pet Owner's Name Can Be Updated
 New Pet Owner Can be Added to the System
                                             Click Element                                           ${FIND_OWNER_NAVIGATION_BAR_LINK}
                                             Click Element                                           ${ADD_OWNER_BUTTON}
-                                            Input Text                                              ${INPUT_ELEMENT_FIRST_NAME}          Adriel
-                                            Input Text                                              ${INPUT_ELEMENT_LAST_NAME}           Jones
-                                            Input Text                                              ${INPUT_ELEMENT_ADDRESS}             120 E 87th Street New York 10128
-                                            Input Text                                              ${INPUT_ELEMENT_CITY}                New York
-                                            Input Text                                              ${INPUT_ELEMENT_TELEPHONE}           0534234434
+                                            Input Text                                              ${INPUT_ELEMENT_FIRST_NAME}          Carroll
+                                            Input Text                                              ${INPUT_ELEMENT_LAST_NAME}           Claude
+                                            Input Text                                              ${INPUT_ELEMENT_ADDRESS}             122 Y 97th Street New York 103242
+                                            Input Text                                              ${INPUT_ELEMENT_CITY}                New Jersey
+                                            Input Text                                              ${INPUT_ELEMENT_TELEPHONE}           6786786
                                             Click Element                                           ${UPDATE_OWNER_BUTTON}
-
-
-
+                                            Element Text Should Be                                  ${OWNER_NAME_LABEL}                  Carroll Claude
+                                            Element Text Should Be                                  ${OWNER_ADDRESS_LABEL}               122 Y 97th Street New York 103242
+                                            Element Text Should Be                                  ${OWNER_CITY_LABEL }                 New Jersey
+                                            Element Text Should Be                                  ${OWNER_TELEPHONE_LABEL}             6786786
 
 
 
